@@ -19,7 +19,7 @@ export const Contact = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    
+    props.setData ({name, email, message})
     emailjs
       .sendForm(
         'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', e.target, 'YOUR_USER_ID'
@@ -91,8 +91,11 @@ export const Contact = (props) => {
                   <p className='help-block text-danger'></p>
                 </div>
                 <div id='success'></div>
-                <button data-aos='fade' data-aos-duration='1000' type='submit' className='btn btn-custom btn-lg'>
+                <button data-aos='fade' data-aos-duration='1000' type='submit' className='btn btn-custom btn-lg mr-2'>
                   Send Message
+                </button>
+                <button data-aos='fade' data-aos-duration='1000' type='button' className='btn btn-custom btn-lg mr-2' onClick={props.handleclick}>
+                  Photographer
                 </button>
               </form>
             </div>

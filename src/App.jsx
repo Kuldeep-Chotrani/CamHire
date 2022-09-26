@@ -13,6 +13,7 @@ import { Blogs } from './components/blogs'
 // import {Popup} from './components/popup'
 import JsonData from './data/data.json'
 import SmoothScroll from 'smooth-scroll'
+// import Modal from './components/Modal'
 import {
   BrowserRouter as Router,
   Switch,
@@ -30,9 +31,12 @@ export const scroll = new SmoothScroll('a[href*="#"]', {
 const App = () => {
   const [landingPageData, setLandingPageData] = useState({})
   useEffect(() => {
+    setshowmodal(true)
     setLandingPageData(JsonData)
   }, [])
-
+  const [showmodal, setshowmodal] = useState(false)
+  const handleclick = () => setshowmodal(!showmodal)
+  const [data, setData] = useState("")
   return (
     <div>
       {/* <Popup /> */}
@@ -44,7 +48,8 @@ const App = () => {
       <Blogs data={landingPageData.Blogs} />
       <Gallery />
       
-      <Contact data = {landingPageData.Contact}/>
+      <Contact data={landingPageData.Contact} setData={setData} handleclick={handleclick} />
+      {/* { showmodal && (<Modal setData={setData} handleclick={handleclick} />)} */}
       <Footer />
       <Router>
       <Switch>
